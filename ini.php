@@ -1,39 +1,64 @@
 <?php
 
+/*
+|--------------------------------------------------------------------------
+| Header : URL links and title
+|--------------------------------------------------------------------------
+|
+*/
+
+$headerMenus = [
+    [
+        'title' => 'Personal Information',
+        'url' => '/pages/home.php',
+    ],
+    [
+        'title' => 'Courses Information',
+        'url' => '/pages/viewCourses.php',
+    ],
+    [
+        'title' => 'Experiences Information',
+        'url' => '/pages/viewExperience.php',
+    ],
+    [
+        'title' => 'Add Courses',
+        'url' => '/pages/addCourse.php',
+    ],
+    [
+        'title' => 'Add Experiences',
+        'url' => '/pages/AddExperience.php',
+    ],
+];
 
 /*
 |--------------------------------------------------------------------------
-| Pages : URL links and title
+| Pages
 |--------------------------------------------------------------------------
 |
 */
 
 $pages = [
-    'info'=>[
+    'home'=>[
         'title' => 'Personal Information',
-        'url' => 'info',
-        'dir' => 'pages/info.php',
+        'image' => '/assets/images/info.png',
     ],
-    [
+    'course'=>[
         'title' => 'Courses Information',
-        'url' => 'courses',
-        'dir' => 'pages/info.php',
-
     ],
-    [
+    'courses'=>[
+        'title' => 'All Courses Information',
+        'image' => '/assets/images/info.png',
+    ],
+    'add-courses'=>[
         'title' => 'Add Courses',
-        'url' => 'add-courses',
-        'dir' => 'pages/addCourses.php',
+        'image' => '/assets/images/add-course.png',
     ],
-    [
-        'title' => 'Experiences Information',
-        'url' => 'experiences',
-        'dir' => 'pages/experiences.php',
+    'experience'=>[
+        'title' => 'All Experiences Information',
     ],
-    [
+    'add-experiences'=>[
         'title' => 'Add Experiences',
-        'url' => 'add-experiences',
-        'dir' => 'pages/addExperiences.php',
+        'image' => '/assets/images/add-experience.png',
     ],
 ];
 
@@ -45,7 +70,36 @@ $pages = [
 |
 */
 
-$footer = "layout/header.php";
-$page = "layout/page.php";
+$layout = [
+    'head' => __DIR__.'/layout/head.php',
+    'header' =>  __DIR__.'/layout/header.php',
+    'home' =>  __DIR__.'/pages/home.php',
+];
 
-//include      "config.php";
+
+
+/*
+|--------------------------------------------------------------------------
+| Data and Sql
+|--------------------------------------------------------------------------
+|
+*/
+
+
+$categories = [
+    'job',
+    'training',
+];
+
+
+include "config.php";
+// user
+$properties = $connection->prepare("select * from properties");
+$user = $connection->prepare("select * from users limit 1");
+// experiences
+$experiences = $connection->prepare("select * from experiences");
+$addExperience = $connection->prepare("insert into experiences(category, title, start_month, end_month, institution, description) values ( ? ,? ,?,?,?,?)");
+// courses
+$courses = $connection->prepare("select * from courses");
+$course = $connection->prepare("select * from courses where id=?");
+$addCourse = $connection->prepare("insert into courses(title, total_hours, date_start, date_end, institution, attachment_type, attachment, note) values (?, ? ,? ,?,?,?,?,?)");
