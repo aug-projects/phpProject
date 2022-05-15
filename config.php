@@ -13,14 +13,9 @@ $connections =  [
     'driver' => 'mysql',
     'host' => 'localhost',
     'port' => '3306',
-    'database' => 'cv',
+    'database' => 'cv_db',
     'username' => 'root',
     'password' => 'root',
-    'charset' => 'utf8mb4',
-    'collation' => 'utf8mb4_unicode_ci',
-    'options' => extension_loaded('pdo_mysql') ? array_filter([
-        PDO::MYSQL_ATTR_SSL_CA => 'SET NAMES utf8',
-    ]) : [],
 ];
 
 
@@ -40,11 +35,11 @@ $connections =  [
 try {
 
     $connection = new PDO(
-        "{$connections['driver']}:host{$connections['host']}:dbname{$connections['database']}",
+        "{$connections['driver']}:host={$connections['host']};dbname={$connections['database']}",
         $connections['username'],
-        $connections['password'],
-        $connections['options']
+        $connections['password']
     );
+
     $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 } catch (PDOException $e) {
