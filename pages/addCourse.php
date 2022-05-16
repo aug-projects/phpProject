@@ -179,7 +179,7 @@
             <?php
                 echo "
                     <div class='text-center w-2/5'>
-                        <img src='{$pages['add-courses']['image']}' class='w-full' alt='logo'  title='logo'/>
+                        <img src='{$pages['add-courses']['image']}' class='w-3/4' alt='logo'  title='logo'/>
                     </div>
                 ";
             ?>

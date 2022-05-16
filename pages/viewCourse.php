@@ -33,8 +33,8 @@
                                        {$viewCourse['note']}
                                     </p>
                                 </div>
-                                <div class='w-full'>
-                                    <img class='w-full' alt='{$viewCourse['title']}'  src='{$viewCourse['attachment']}' />
+                                <div class='w-full h-screen text-center'>
+                                    <img class='w-3/5 border p-2' alt='{$viewCourse['title']}'  src='{$viewCourse['attachment']}' />
                                 </div>
                             </div>
                         "

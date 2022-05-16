@@ -59,7 +59,7 @@
                         <label for="category">Experiences Category:</label>
                     </div>
                     <div>
-                        <select id="category" class="w-3/4" name="category" required>
+                        <select id="category" class="flex w-3/4" name="category" required>
                             <?php
                                 foreach ($categories as $category){
                                     echo "<option value='$category'>$category</option>";
@@ -136,7 +136,7 @@
         <?php
             echo "
                     <div class='text-center w-2/5'>
-                        <img src='{$pages['add-experiences']['image']}' class='w-full' alt='logo'  title='logo'/>
+                        <img src='{$pages['add-experiences']['image']}' class='w-3/4' alt='logo'  title='logo'/>
                     </div>
                 ";
         ?>
